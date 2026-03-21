@@ -1,11 +1,12 @@
-import { friends, totalBalance } from "@/lib/data";
-import Avatar from "@/components/Avatar";
+import { groups } from "@/lib/data";
 
 function fmt(amount: number) {
   return `$${Math.abs(amount).toFixed(2)}`;
 }
 
-export default function FriendsPage() {
+const totalBalance = groups.reduce((sum, g) => sum + g.balance, 0);
+
+export default function GroupsPage() {
   return (
     <div className="flex flex-col min-h-full">
       {/* Header */}
@@ -15,7 +16,7 @@ export default function FriendsPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
           </svg>
         </button>
-        <button className="text-emerald-600 font-medium text-sm">Add friends</button>
+        <button className="text-emerald-600 font-medium text-sm">Create group</button>
       </div>
 
       {/* Balance summary */}
@@ -31,38 +32,37 @@ export default function FriendsPage() {
         </button>
       </div>
 
-      {/* Friends list */}
+      {/* Groups list */}
       <ul className="flex-1 divide-y divide-gray-50">
-        {friends.map((friend) => (
-          <li key={friend.id} className="px-4 py-3.5 active:bg-gray-50 cursor-pointer">
+        {groups.map((group) => (
+          <li key={group.id} className="px-4 py-3.5 active:bg-gray-50 cursor-pointer">
             <div className="flex items-center gap-3">
-              <Avatar initials={friend.avatar} />
+              {/* Group icon */}
+              <div className={`w-11 h-11 ${group.color} rounded-lg flex items-center justify-center text-xl flex-shrink-0`}>
+                {group.emoji}
+              </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 text-[15px]">{friend.name}</p>
-                {friend.breakdown && friend.breakdown.length > 0 && (
-                  <div className="mt-0.5 space-y-0.5">
-                    {friend.breakdown.map((b) => (
-                      <p key={b.group} className="text-xs text-gray-400">
-                        You owe {friend.name.split(" ")[0]} {fmt(b.amount)} in &ldquo;{b.group}&rdquo;
-                      </p>
-                    ))}
-                  </div>
-                )}
+                <p className="font-medium text-gray-900 text-[15px]">{group.name}</p>
+                {group.breakdown.map((b) => (
+                  <p key={b.name} className="text-xs text-gray-400 mt-0.5">
+                    You owe {b.name} {fmt(b.amount)}
+                  </p>
+                ))}
               </div>
               <div className="text-right flex-shrink-0">
                 <p className="text-xs text-gray-400 mb-0.5">you owe</p>
-                <p className="text-[15px] font-semibold text-orange-500">{fmt(friend.balance)}</p>
+                <p className="text-[15px] font-semibold text-orange-500">{fmt(group.balance)}</p>
               </div>
             </div>
           </li>
         ))}
       </ul>
 
-      {/* Settled up friends hint */}
+      {/* Settled up hint */}
       <div className="px-4 py-4 text-center">
-        <p className="text-xs text-gray-400 mb-3">Hiding friends you settled up with over 7 days ago</p>
+        <p className="text-xs text-gray-400 mb-3">Hiding groups you settled up with over 7 days ago</p>
         <button className="w-full border border-emerald-600 text-emerald-600 rounded-full py-3 text-sm font-medium">
-          Show settled-up friends
+          Show 4 settled-up groups
         </button>
       </div>
 
