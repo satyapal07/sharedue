@@ -102,7 +102,7 @@ function CharacterAvatar({
         />
 
         {/* Neck */}
-        <rect x="17.5" y="25" width="5" height="5.5" rx="2" fill="#EDD8C8" />
+        <rect x="17.5" y="25" width="5" height="5.5" rx="2" fill="white" />
 
         {/* Face */}
         <ellipse
