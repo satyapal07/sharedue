@@ -4,11 +4,31 @@ export type ExpenseCategory =
   | "transport"
   | "fitness"
   | "travel"
+  | "outdoors"
   | "entertainment"
   | "utilities"
   | "shopping"
   | "settlement"
   | "general";
+
+/**
+ * Infer the best category from a group/expense name.
+ * Used when someone types a name so the icon auto-matches.
+ */
+export function getCategoryFromText(text: string): ExpenseCategory {
+  const t = text.toLowerCase();
+  if (/\b(apartment|rent|mortgage|house|home|flat|room|lease|landlord|condo)\b/.test(t)) return "housing";
+  if (/\b(food|restaurant|dinner|lunch|breakfast|cafe|coffee|pizza|grocery|groceries|meal|sushi|brunch|taco|burger|eat|bar|drinks)\b/.test(t)) return "food";
+  if (/\b(uber|lyft|taxi|cab|road.?trip|drive|gas|fuel|parking|bus|train|metro|commute|rideshare|toll)\b/.test(t)) return "transport";
+  if (/\b(flight|airline|hotel|airbnb|vacation|holiday|airport|cruise|abroad|international)\b/.test(t)) return "travel";
+  if (/\b(beach|camp(ing)?|hike|hiking|outdoor|park|nature|surf|ocean|lake|mountain|ski|snow|boat|trail|climb)\b/.test(t)) return "outdoors";
+  if (/\b(gym|workout|fitness|yoga|crossfit|pilates|swim|run|marathon|cycling|tennis|golf|sport|membership)\b/.test(t)) return "fitness";
+  if (/\b(movie|cinema|concert|show|theater|netflix|spotify|game|gaming|event|ticket|party|festival|music)\b/.test(t)) return "entertainment";
+  if (/\b(electric|electricity|water|internet|wifi|phone|bill|utility|utilities|subscription|insurance)\b/.test(t)) return "utilities";
+  if (/\b(shopping|amazon|store|buy|clothes|clothing|shoes|mall|market)\b/.test(t)) return "shopping";
+  if (/\b(settle|payment|transfer|paid|back|owe)\b/.test(t)) return "settlement";
+  return "general";
+}
 
 export type Friend = {
   id: string;
@@ -76,7 +96,7 @@ export const groups: Group[] = [
     breakdown: [{ name: "Taylor B.", amount: -33.00 }],
   },
   {
-    id: "5", name: "Beach Weekend", category: "travel",
+    id: "5", name: "Beach Weekend", category: "outdoors",
     memberCount: 6, balance: 50.00,
     breakdown: [{ name: "Chris L.", amount: 50.00 }],
   },
