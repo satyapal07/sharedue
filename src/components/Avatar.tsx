@@ -1,31 +1,21 @@
-const palettes = [
-  { bg: "bg-violet-100", text: "text-violet-700" },
-  { bg: "bg-sky-100", text: "text-sky-700" },
-  { bg: "bg-emerald-100", text: "text-emerald-700" },
-  { bg: "bg-rose-100", text: "text-rose-700" },
-  { bg: "bg-amber-100", text: "text-amber-700" },
-  { bg: "bg-indigo-100", text: "text-indigo-700" },
-  { bg: "bg-teal-100", text: "text-teal-700" },
-  { bg: "bg-pink-100", text: "text-pink-700" },
-];
-
-function paletteFor(name: string) {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  return palettes[Math.abs(hash) % palettes.length];
-}
-
 const sizes = {
-  sm: "w-9 h-9 text-xs",
-  md: "w-11 h-11 text-sm",
-  lg: "w-14 h-14 text-lg",
+  sm: { wrap: "w-9 h-9", icon: "w-4 h-4" },
+  md: { wrap: "w-11 h-11", icon: "w-5 h-5" },
+  lg: { wrap: "w-14 h-14", icon: "w-7 h-7" },
 };
 
-export default function Avatar({ initials, size = "md" }: { initials: string; size?: "sm" | "md" | "lg" }) {
-  const { bg, text } = paletteFor(initials);
+// Generic person silhouette — no initials, consistent with style guide
+export default function Avatar({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
+  const { wrap, icon } = sizes[size];
   return (
-    <div className={`${sizes[size]} ${bg} ${text} rounded-full flex items-center justify-center font-semibold flex-shrink-0`}>
-      {initials}
+    <div className={`${wrap} rounded-full bg-[#E8E2DB] flex items-center justify-center flex-shrink-0`}>
+      <svg className={`${icon} text-[#9B8F86]`} viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fillRule="evenodd"
+          d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
   );
 }
