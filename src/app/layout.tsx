@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${geist.className} bg-[#f8f9fb]`}>
         <div className="max-w-[390px] mx-auto min-h-screen bg-white relative">
-          <main className="pb-24">{children}</main>
+          <main className="pb-28">{children}</main>
           <BottomNav />
         </div>
       </body>
