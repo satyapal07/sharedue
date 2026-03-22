@@ -1,7 +1,7 @@
 import { recentActivity } from "@/lib/data";
 import Avatar from "@/components/Avatar";
 import CategoryIcon from "@/components/CategoryIcon";
-import { LogoWordmark } from "@/components/Logo";
+import CollapsingHeader from "@/components/CollapsingHeader";
 
 function fmt(n: number) {
   return `$${Math.abs(n).toFixed(2)}`;
@@ -10,11 +10,7 @@ function fmt(n: number) {
 export default function ActivityPage() {
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
-      {/* Header */}
-      <div className="px-5 pt-14 pb-4">
-        <LogoWordmark className="text-2xl" />
-        <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">Activity</p>
-      </div>
+      <CollapsingHeader subtitle="Activity" />
 
       {/* Feed */}
       <div className="mx-5 bg-white rounded-3xl px-4 py-4">

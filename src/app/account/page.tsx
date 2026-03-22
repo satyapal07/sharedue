@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { LogoWordmark } from "@/components/Logo";
+import CollapsingHeader from "@/components/CollapsingHeader";
 import { AvatarPicker } from "@/components/Avatar";
 import Avatar from "@/components/Avatar";
 
@@ -81,23 +81,28 @@ const settingsSections: {
 
 export default function AccountPage() {
   const [selectedAvatar, setSelectedAvatar] = useState<number>(1);
+  const [pickerOpen, setPickerOpen] = useState(false);
 
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
-      {/* Header */}
-      <div className="px-5 pt-14 pb-4">
-        <LogoWordmark className="text-2xl" />
-        <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">Account</p>
-      </div>
+      <CollapsingHeader subtitle="Account" />
 
       {/* Profile card */}
       <div className="mx-5 bg-white rounded-3xl px-4 py-4 mb-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative">
+            {/* Tappable avatar — opens picker */}
+            <button
+              className="relative flex-shrink-0"
+              onClick={() => setPickerOpen(true)}
+            >
               <Avatar avatarId={selectedAvatar} size="lg" />
-              <div className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-white" />
-            </div>
+              <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#DF5830] rounded-full flex items-center justify-center border-2 border-white">
+                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                </svg>
+              </div>
+            </button>
             <div>
               <p className="font-bold text-[#1A1510] text-lg leading-tight">Satya Pal</p>
               <p className="text-sm text-[#9B8F86]">satya.pal07@gmail.com</p>
@@ -106,12 +111,6 @@ export default function AccountPage() {
           <button className="text-[11px] font-bold text-[#9B8F86] bg-[#F5F0EB] px-3 py-1.5 rounded-full uppercase tracking-wide">
             Edit
           </button>
-        </div>
-
-        {/* Avatar picker */}
-        <div className="pt-4 border-t border-[#F5F0EB]">
-          <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-3">Choose avatar</p>
-          <AvatarPicker selected={selectedAvatar} onSelect={setSelectedAvatar} />
         </div>
       </div>
 
@@ -159,6 +158,27 @@ export default function AccountPage() {
           Sign out
         </button>
       </div>
+
+      {/* Avatar picker modal */}
+      {pickerOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-50"
+            onClick={() => setPickerOpen(false)}
+          />
+          <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] z-50 bg-white rounded-t-3xl px-5 pt-4 pb-20">
+            <div className="w-8 h-1 bg-[#E8E2DB] rounded-full mx-auto mb-5" />
+            <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-4">Choose avatar</p>
+            <AvatarPicker
+              selected={selectedAvatar}
+              onSelect={(id) => {
+                setSelectedAvatar(id);
+                setPickerOpen(false);
+              }}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

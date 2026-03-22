@@ -1,5 +1,5 @@
 import { groups } from "@/lib/data";
-import { LogoWordmark } from "@/components/Logo";
+import CollapsingHeader from "@/components/CollapsingHeader";
 import CategoryIcon from "@/components/CategoryIcon";
 
 function fmt(n: number) {
@@ -10,20 +10,16 @@ const totalOwed = groups.filter((g) => g.balance < 0).reduce((s, g) => s + g.bal
 const totalOwing = groups.filter((g) => g.balance > 0).reduce((s, g) => s + g.balance, 0);
 const net = groups.reduce((s, g) => s + g.balance, 0);
 
+const newGroupButton = (
+  <button className="text-[11px] font-bold text-[#DF5830] bg-white px-3 py-1.5 rounded-full uppercase tracking-wide border border-[#E8E2DB]">
+    + New
+  </button>
+);
 
 export default function GroupsPage() {
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
-      {/* Header */}
-      <div className="flex items-center justify-between px-5 pt-14 pb-4">
-        <div>
-          <LogoWordmark className="text-2xl" />
-          <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">Groups</p>
-        </div>
-        <button className="text-[11px] font-bold text-[#DF5830] bg-[#FEF0EB] px-3 py-1.5 rounded-full uppercase tracking-wide border border-[#DF5830]/20">
-          + New
-        </button>
-      </div>
+      <CollapsingHeader subtitle="Groups" right={newGroupButton} />
 
       {/* Balance card */}
       <div className="mx-5 mb-5 bg-[#1A1510] rounded-3xl p-5 text-white">

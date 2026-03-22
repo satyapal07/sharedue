@@ -22,7 +22,6 @@ const tabs = [
       </svg>
     ),
   },
-  null, // center FAB
   {
     href: "/activity",
     label: "Activity",
@@ -48,25 +47,21 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-[#1A1510] z-50">
-      <div className="flex items-center justify-around h-[64px] px-2 relative">
+      <div className="flex items-center justify-around h-[64px] px-4">
         {tabs.map((tab) => {
-          if (tab === null) {
-            return (
-              <div key="fab" className="flex flex-col items-center justify-center -mt-7">
-                <button className="w-14 h-14 bg-[#DF5830] rounded-full flex items-center justify-center shadow-lg shadow-black/30">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
-                </button>
-                <span className="text-[9px] font-semibold text-[#9B8F86] mt-1 tracking-wide uppercase">Add</span>
-              </div>
-            );
-          }
           const active = pathname === tab.href;
           return (
-            <Link key={tab.href} href={tab.href} className="flex flex-col items-center gap-1 py-2 px-4">
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className="flex flex-col items-center gap-1 py-2 px-5"
+            >
               {tab.icon(active)}
-              <span className={`text-[9px] font-semibold tracking-wide uppercase transition-colors ${active ? "text-white" : "text-[#9B8F86]"}`}>
+              <span
+                className={`text-[9px] font-semibold tracking-wide uppercase transition-colors ${
+                  active ? "text-white" : "text-[#9B8F86]"
+                }`}
+              >
                 {tab.label}
               </span>
             </Link>
