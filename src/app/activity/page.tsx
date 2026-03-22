@@ -10,8 +10,10 @@ export default function ActivityPage() {
     <div className="flex flex-col min-h-full bg-white">
       {/* Header */}
       <div className="px-5 pt-14 pb-2">
-        <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest">history</p>
-        <h1 className="text-3xl font-black text-gray-900 leading-tight tracking-tight">Activity</h1>
+        <span className="text-2xl font-black tracking-tight">
+          <span className="text-gray-900">share</span><span className="text-violet-600">due</span>
+        </span>
+        <h1 className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-0.5">Activity</h1>
       </div>
 
       {/* Feed */}

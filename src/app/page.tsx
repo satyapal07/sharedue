@@ -50,8 +50,10 @@ export default function FriendsPage() {
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-14 pb-2">
         <div>
-          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest">overview</p>
-          <h1 className="text-3xl font-black text-gray-900 leading-tight tracking-tight">Friends</h1>
+          <span className="text-2xl font-black tracking-tight">
+            <span className="text-gray-900">share</span><span className="text-violet-600">due</span>
+          </span>
+          <h1 className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-0.5">Friends</h1>
         </div>
         <button className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-[13px] font-bold text-gray-700">
           SP

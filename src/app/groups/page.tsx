@@ -42,8 +42,10 @@ export default function GroupsPage() {
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-14 pb-2">
         <div>
-          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest">overview</p>
-          <h1 className="text-3xl font-black text-gray-900 leading-tight tracking-tight">Groups</h1>
+          <span className="text-2xl font-black tracking-tight">
+            <span className="text-gray-900">share</span><span className="text-violet-600">due</span>
+          </span>
+          <h1 className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mt-0.5">Groups</h1>
         </div>
         <button className="text-[11px] font-bold text-gray-900 bg-gray-100 px-3 py-1.5 rounded-full uppercase tracking-wide">
           + New
