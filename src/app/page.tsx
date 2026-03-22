@@ -79,7 +79,6 @@ export default function FriendsPage() {
 
       {/* Quick actions */}
       <div className="mx-5 mb-5 bg-white rounded-3xl p-4">
-        <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-4">Quick actions</p>
         <div className="grid grid-cols-4 gap-2">
           {quickActions.map((a) => (
             <button key={a.label} className="flex flex-col items-center gap-2">
