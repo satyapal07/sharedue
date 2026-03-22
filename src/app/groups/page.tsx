@@ -1,6 +1,7 @@
 import { groups } from "@/lib/data";
 import CollapsingHeader from "@/components/CollapsingHeader";
 import CategoryIcon from "@/components/CategoryIcon";
+import FloatingAddButton from "@/components/FloatingAddButton";
 
 function fmt(n: number) {
   return `$${Math.abs(n).toFixed(2)}`;
@@ -10,16 +11,10 @@ const totalOwed = groups.filter((g) => g.balance < 0).reduce((s, g) => s + g.bal
 const totalOwing = groups.filter((g) => g.balance > 0).reduce((s, g) => s + g.balance, 0);
 const net = groups.reduce((s, g) => s + g.balance, 0);
 
-const newGroupButton = (
-  <button className="text-[11px] font-bold text-[#DF5830] bg-white px-3 py-1.5 rounded-full uppercase tracking-wide border border-[#E8E2DB]">
-    + New
-  </button>
-);
-
 export default function GroupsPage() {
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
-      <CollapsingHeader subtitle="Groups" right={newGroupButton} />
+      <CollapsingHeader subtitle="Groups" />
 
       {/* Balance card */}
       <div className="mx-5 mb-5 bg-[#1A1510] rounded-3xl p-5 text-white">
@@ -86,6 +81,8 @@ export default function GroupsPage() {
       </div>
 
       <div className="h-5" />
+
+      <FloatingAddButton label="Add group" />
     </div>
   );
 }

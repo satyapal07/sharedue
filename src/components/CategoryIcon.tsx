@@ -22,10 +22,11 @@ const icons: Record<ExpenseCategory, React.ReactNode> = {
     </svg>
   ),
 
-  // Dumbbell — replaces the lightning bolt
+  // Flame — gym, workout, fitness
   fitness: (
-    <svg className="w-5 h-5 text-[#1A1510]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round">
-      <path d="M6 12h12M3 9.5h3M3 14.5h3M4.5 9.5v5M18 9.5h3M18 14.5h3M19.5 9.5v5" />
+    <svg className="w-5 h-5 text-[#1A1510]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.6a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
     </svg>
   ),
 
@@ -36,10 +37,19 @@ const icons: Record<ExpenseCategory, React.ReactNode> = {
     </svg>
   ),
 
-  // Sun — beach, camping, hiking, outdoor trips
+  // Palm tree + sun — beach, outdoor trips
   outdoors: (
     <svg className="w-5 h-5 text-[#1A1510]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+      {/* Sun */}
+      <circle cx="18" cy="5" r="2" />
+      <path strokeLinecap="round" d="M18 2v1M18 8v1M21.5 5h-1M15.5 5h-1" />
+      {/* Palm trunk */}
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 21 Q9.5 17 11 13" />
+      {/* Palm fronds */}
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 13 Q9.5 11 7 11.5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 13 Q10.5 10.5 11 8" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 13 Q12.5 11 15 11.5" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 13 Q12 10.5 14 9" />
     </svg>
   ),
 
