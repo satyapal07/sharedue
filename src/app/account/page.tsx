@@ -1,93 +1,113 @@
+const menuSections = [
+  {
+    items: [
+      { emoji: "🔗", label: "Bank connections", sublabel: "Link accounts for auto-import" },
+      { emoji: "🔔", label: "Notifications", sublabel: "Manage alerts & reminders" },
+      { emoji: "🔒", label: "Security", sublabel: "Password, 2FA, and sessions" },
+    ],
+  },
+  {
+    title: "App",
+    items: [
+      { emoji: "🌐", label: "Language & region" },
+      { emoji: "🎨", label: "Appearance" },
+      { emoji: "💬", label: "Send feedback" },
+      { emoji: "⭐", label: "Rate Sharedue" },
+    ],
+  },
+];
+
+function ChevronRight() {
+  return (
+    <svg className="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+  );
+}
+
 export default function AccountPage() {
-  const menuItems = [
-    { icon: "⬛", label: "Scan code" },
-    { icon: "💜", label: "Sharedue Pro" },
-    { icon: "💼", label: "We're hiring!" },
-  ];
-
-  const preferences = [
-    { label: "Bank connections" },
-    { label: "Notifications" },
-    { label: "Security" },
-    { label: "Privacy" },
-  ];
-
   return (
     <div className="flex flex-col min-h-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 pt-14 pb-4">
-        <button className="p-1">
-          <svg className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
-        </button>
-        <h1 className="text-lg font-semibold text-gray-900">Account</h1>
-        <div className="w-7" />
+      <div className="px-5 pt-14 pb-1">
+        <h1 className="text-2xl font-bold text-gray-900">Account</h1>
       </div>
 
-      {/* Profile */}
-      <div className="flex items-center gap-3 px-4 pb-5 border-b border-gray-100">
-        <div className="relative">
-          <div className="w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center text-2xl font-bold text-white">
-            S
+      {/* Profile card */}
+      <div className="mx-5 mt-4 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="h-16 bg-gradient-to-r from-violet-500 to-indigo-600" />
+        <div className="px-4 pb-4">
+          <div className="flex items-end justify-between -mt-8 mb-3">
+            <div className="relative">
+              <div className="w-16 h-16 rounded-full bg-violet-100 border-4 border-white flex items-center justify-center text-violet-700 text-xl font-bold shadow-sm">
+                SP
+              </div>
+              <div className="absolute bottom-0.5 right-0.5 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white" />
+            </div>
+            <button className="text-xs font-semibold text-violet-600 bg-violet-50 px-3 py-1.5 rounded-full border border-violet-100">
+              Edit profile
+            </button>
           </div>
-          <div className="absolute bottom-0 right-0 w-5 h-5 bg-gray-700 rounded-full flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-            </svg>
-          </div>
-        </div>
-        <div className="flex-1">
-          <p className="font-semibold text-gray-900">satyapal07</p>
+          <p className="font-bold text-gray-900 text-lg leading-tight">Satya Pal</p>
           <p className="text-sm text-gray-400">satya.pal07@gmail.com</p>
         </div>
-        <button className="text-emerald-600 font-medium text-sm">Edit</button>
+      </div>
+
+      {/* Stats row */}
+      <div className="mx-5 mt-3 grid grid-cols-3 gap-2">
+        {[
+          { label: "Friends", value: "6" },
+          { label: "Groups", value: "5" },
+          { label: "Expenses", value: "24" },
+        ].map((stat) => (
+          <div key={stat.label} className="bg-white rounded-2xl p-3 text-center shadow-sm border border-gray-100">
+            <p className="text-xl font-bold text-gray-900">{stat.value}</p>
+            <p className="text-[11px] text-gray-400 mt-0.5">{stat.label}</p>
+          </div>
+        ))}
       </div>
 
       {/* Pro banner */}
-      <div className="mx-4 mt-4 bg-purple-50 rounded-2xl p-5 text-center border border-purple-100">
-        <div className="flex justify-center mb-2">
-          <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-white text-lg font-bold">
-            S
-          </div>
+      <div className="mx-5 mt-3 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 p-4 flex items-center justify-between shadow-sm">
+        <div>
+          <p className="text-white font-semibold text-sm">Sharedue Pro</p>
+          <p className="text-violet-200 text-xs mt-0.5">Charts, reminders & more</p>
         </div>
-        <p className="text-sm font-semibold text-gray-800 mb-3">
-          Do more with <span className="text-purple-600">Sharedue Pro</span>.
-        </p>
-        <button className="w-full bg-purple-600 text-white rounded-full py-2.5 text-sm font-medium">
-          Get Sharedue Pro
+        <button className="bg-white text-violet-700 text-xs font-bold px-4 py-2 rounded-full">
+          Upgrade
         </button>
       </div>
 
-      {/* Menu items */}
-      <ul className="mt-4 divide-y divide-gray-50 border-t border-gray-100">
-        {menuItems.map((item) => (
-          <li key={item.label} className="flex items-center justify-between px-4 py-4 cursor-pointer active:bg-gray-50">
-            <div className="flex items-center gap-3">
-              <span className="text-lg">{item.icon}</span>
-              <span className="text-sm font-medium text-gray-800">{item.label}</span>
-            </div>
-            <svg className="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-          </li>
+      {/* Settings sections */}
+      <div className="mx-5 mt-3 space-y-3 mb-4">
+        {menuSections.map((section, si) => (
+          <div key={si} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            {section.title && (
+              <p className="px-4 pt-3 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+                {section.title}
+              </p>
+            )}
+            <ul className="divide-y divide-gray-50">
+              {section.items.map((item) => (
+                <li key={item.label} className="flex items-center px-4 py-3.5 cursor-pointer active:bg-gray-50">
+                  <span className="text-lg mr-3">{item.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-800">{item.label}</p>
+                    {"sublabel" in item && item.sublabel && (
+                      <p className="text-xs text-gray-400 mt-0.5">{item.sublabel}</p>
+                    )}
+                  </div>
+                  <ChevronRight />
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
 
-      {/* Preferences */}
-      <div className="mt-4 border-t border-gray-100">
-        <p className="px-4 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">Preferences</p>
-        <ul className="divide-y divide-gray-50">
-          {preferences.map((item) => (
-            <li key={item.label} className="flex items-center justify-between px-4 py-4 cursor-pointer active:bg-gray-50">
-              <span className="text-sm font-medium text-gray-800">{item.label}</span>
-              <svg className="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </li>
-          ))}
-        </ul>
+        {/* Sign out */}
+        <button className="w-full bg-white rounded-2xl shadow-sm border border-gray-100 py-4 text-sm font-semibold text-rose-500">
+          Sign out
+        </button>
       </div>
     </div>
   );

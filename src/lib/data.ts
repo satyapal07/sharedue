@@ -1,8 +1,8 @@
 export type Friend = {
   id: string;
   name: string;
-  avatar: string;
-  balance: number; // negative = you owe them, positive = they owe you
+  initials: string;
+  balance: number; // negative = you owe, positive = they owe you
   breakdown?: { group: string; amount: number }[];
 };
 
@@ -10,180 +10,165 @@ export type Group = {
   id: string;
   name: string;
   emoji: string;
-  color: string;
   memberCount: number;
   balance: number;
   breakdown: { name: string; amount: number }[];
 };
 
-export type Expense = {
-  id: string;
-  description: string;
-  paidBy: string;
-  amount: number;
-  yourShare: number; // negative = you borrowed, positive = you lent
-  date: string;
-  groupId?: string;
-  groupName?: string;
-};
-
 export type ActivityItem = {
   id: string;
   person: string;
-  avatar: string;
+  initials: string;
   action: string;
-  detail: string;
-  amount: number;
+  groupName?: string;
+  amount: number; // negative = you owe, positive = you lent
   date: string;
 };
 
 export const friends: Friend[] = [
   {
     id: "1",
-    name: "Atul Agarwal",
-    avatar: "AA",
-    balance: -24.67,
-    breakdown: [],
+    name: "Alex Chen",
+    initials: "AC",
+    balance: -42.50,
   },
   {
     id: "2",
-    name: "Shivarjun",
-    avatar: "SH",
-    balance: -59.78,
-    breakdown: [],
+    name: "Jordan Kim",
+    initials: "JK",
+    balance: 28.00,
   },
   {
     id: "3",
-    name: "Soumik Choudhuri",
-    avatar: "SC",
-    balance: -21.76,
-    breakdown: [],
-  },
-  {
-    id: "4",
-    name: "Suchit Das",
-    avatar: "SD",
-    balance: -121.17,
-    breakdown: [],
-  },
-  {
-    id: "5",
-    name: "Vishal Gupta",
-    avatar: "VG",
-    balance: -121.62,
+    name: "Maya Patel",
+    initials: "MP",
+    balance: -85.20,
     breakdown: [
-      { group: "Seattle Darshan", amount: -98.48 },
-      { group: "Non-group expenses", amount: -23.14 },
+      { group: "Road Trip", amount: -60.00 },
+      { group: "Non-group expenses", amount: -25.20 },
     ],
   },
   {
+    id: "4",
+    name: "Sam Rivera",
+    initials: "SR",
+    balance: 15.75,
+  },
+  {
+    id: "5",
+    name: "Taylor Brooks",
+    initials: "TB",
+    balance: -33.00,
+  },
+  {
     id: "6",
-    name: "Vishu",
-    avatar: "VI",
-    balance: -59.70,
-    breakdown: [],
+    name: "Chris Lee",
+    initials: "CL",
+    balance: 50.00,
   },
 ];
 
 export const groups: Group[] = [
   {
     id: "1",
-    name: "Seattle Darshan",
-    emoji: "🗺️",
-    color: "bg-red-500",
-    memberCount: 5,
-    balance: -98.48,
-    breakdown: [{ name: "Vishal G.", amount: -98.48 }],
+    name: "Apartment",
+    emoji: "🏠",
+    memberCount: 3,
+    balance: -120.00,
+    breakdown: [
+      { name: "Alex C.", amount: -80.00 },
+      { name: "Maya P.", amount: -40.00 },
+    ],
   },
   {
     id: "2",
-    name: "T-mobile",
-    emoji: "📱",
-    color: "bg-pink-600",
-    memberCount: 9,
-    balance: -142.93,
-    breakdown: [
-      { name: "Suchit D.", amount: -121.17 },
-      { name: "Soumik C.", amount: -21.76 },
-    ],
+    name: "Road Trip",
+    emoji: "🚗",
+    memberCount: 4,
+    balance: -60.00,
+    breakdown: [{ name: "Maya P.", amount: -60.00 }],
   },
   {
     id: "3",
-    name: "Vegas 🎰",
-    emoji: "✈️",
-    color: "bg-orange-400",
-    memberCount: 4,
-    balance: -59.78,
-    breakdown: [{ name: "Shivarjun", amount: -59.78 }],
+    name: "Dinner Club",
+    emoji: "🍽️",
+    memberCount: 5,
+    balance: 43.75,
+    breakdown: [
+      { name: "Jordan K.", amount: 28.00 },
+      { name: "Sam R.", amount: 15.75 },
+    ],
   },
   {
     id: "4",
-    name: "WeWeWhy aur Wo",
-    emoji: "🏠",
-    color: "bg-purple-600",
-    memberCount: 3,
-    balance: -59.70,
-    breakdown: [{ name: "Vishu", amount: -59.70 }],
+    name: "Gym Membership",
+    emoji: "💪",
+    memberCount: 2,
+    balance: -33.00,
+    breakdown: [{ name: "Taylor B.", amount: -33.00 }],
   },
   {
     id: "5",
-    name: "Non-group expenses",
-    emoji: "💸",
-    color: "bg-teal-500",
-    memberCount: 2,
-    balance: -47.81,
-    breakdown: [
-      { name: "Atul A.", amount: -24.67 },
-      { name: "Vishal G.", amount: -23.14 },
-    ],
+    name: "Beach Weekend",
+    emoji: "🏖️",
+    memberCount: 6,
+    balance: 50.00,
+    breakdown: [{ name: "Chris L.", amount: 50.00 }],
   },
 ];
 
 export const recentActivity: ActivityItem[] = [
   {
     id: "1",
-    person: "Soumi B.",
-    avatar: "SB",
-    action: 'added "Feb\'26" in "T-mobile".',
-    detail: "You owe",
-    amount: -31.11,
-    date: "Feb 12, 2026 at 8:05 PM",
+    person: "Alex Chen",
+    initials: "AC",
+    action: "added",
+    groupName: "Apartment",
+    amount: -42.50,
+    date: "Today, 2:30 PM",
   },
   {
     id: "2",
-    person: "Soumi B.",
-    avatar: "SB",
-    action: 'added "Jan\'26" in "T-mobile".',
-    detail: "You owe",
-    amount: -31.11,
-    date: "Jan 15, 2026 at 3:57 PM",
+    person: "Jordan Kim",
+    initials: "JK",
+    action: "settled up with you",
+    amount: 28.00,
+    date: "Yesterday, 7:15 PM",
   },
   {
     id: "3",
-    person: "Soumik C.",
-    avatar: "SC",
-    action: 'added "Dec\'25 bill" in "T-mobile".',
-    detail: "You owe",
-    amount: -31.11,
-    date: "Dec 13, 2025 at 9:24 AM",
+    person: "Maya Patel",
+    initials: "MP",
+    action: "added",
+    groupName: "Road Trip",
+    amount: -60.00,
+    date: "Mar 18, 11:00 AM",
   },
   {
     id: "4",
-    person: "Vishal G.",
-    avatar: "VG",
-    action: 'added "Seattle Darshan trip" in "Seattle Darshan".',
-    detail: "You owe",
-    amount: -98.48,
-    date: "Jul 16, 2025 at 2:10 PM",
+    person: "You",
+    initials: "ME",
+    action: "added",
+    groupName: "Dinner Club",
+    amount: 43.75,
+    date: "Mar 15, 8:45 PM",
   },
   {
     id: "5",
-    person: "Shivarjun",
-    avatar: "SH",
-    action: 'added "Vegas flights" in "Vegas 🎰".',
-    detail: "You owe",
-    amount: -59.78,
-    date: "Jun 3, 2025 at 11:45 AM",
+    person: "Taylor Brooks",
+    initials: "TB",
+    action: "added",
+    groupName: "Gym Membership",
+    amount: -33.00,
+    date: "Mar 12, 9:00 AM",
+  },
+  {
+    id: "6",
+    person: "Chris Lee",
+    initials: "CL",
+    action: "settled up with you",
+    amount: 50.00,
+    date: "Mar 10, 3:20 PM",
   },
 ];
 

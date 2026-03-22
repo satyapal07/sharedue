@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geist.className} bg-gray-50 antialiased`}>
-        <div className="max-w-md mx-auto min-h-screen bg-white relative shadow-sm">
-          <main className="pb-20">{children}</main>
+      <body className={`${geist.className} bg-[#f8f9fb]`}>
+        <div className="max-w-[390px] mx-auto min-h-screen bg-white relative">
+          <main className="pb-24">{children}</main>
           <BottomNav />
         </div>
       </body>
