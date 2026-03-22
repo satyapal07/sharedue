@@ -9,7 +9,6 @@ export type Friend = {
 export type Group = {
   id: string;
   name: string;
-  emoji: string;
   memberCount: number;
   balance: number;
   breakdown: { name: string; amount: number }[];
@@ -72,7 +71,6 @@ export const groups: Group[] = [
   {
     id: "1",
     name: "Apartment",
-    emoji: "🏠",
     memberCount: 3,
     balance: -120.00,
     breakdown: [
@@ -83,7 +81,6 @@ export const groups: Group[] = [
   {
     id: "2",
     name: "Road Trip",
-    emoji: "🚗",
     memberCount: 4,
     balance: -60.00,
     breakdown: [{ name: "Maya P.", amount: -60.00 }],
@@ -91,7 +88,6 @@ export const groups: Group[] = [
   {
     id: "3",
     name: "Dinner Club",
-    emoji: "🍽️",
     memberCount: 5,
     balance: 43.75,
     breakdown: [
@@ -102,7 +98,6 @@ export const groups: Group[] = [
   {
     id: "4",
     name: "Gym Membership",
-    emoji: "💪",
     memberCount: 2,
     balance: -33.00,
     breakdown: [{ name: "Taylor B.", amount: -33.00 }],
@@ -110,7 +105,6 @@ export const groups: Group[] = [
   {
     id: "5",
     name: "Beach Weekend",
-    emoji: "🏖️",
     memberCount: 6,
     balance: 50.00,
     breakdown: [{ name: "Chris L.", amount: 50.00 }],
