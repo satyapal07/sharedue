@@ -1,5 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { LogoWordmark } from "@/components/Logo";
+import { AvatarPicker } from "@/components/Avatar";
+import Avatar from "@/components/Avatar";
 
 function ChevronRight() {
   return (
@@ -16,15 +20,6 @@ const settingsSections: {
   {
     label: "Preferences",
     items: [
-      {
-        label: "Bank connections",
-        sublabel: "Link for auto-import",
-        icon: (
-          <svg className="w-5 h-5 text-[#9B8F86]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-          </svg>
-        ),
-      },
       {
         label: "Notifications",
         sublabel: "Alerts & reminders",
@@ -85,6 +80,8 @@ const settingsSections: {
 ];
 
 export default function AccountPage() {
+  const [selectedAvatar, setSelectedAvatar] = useState<number>(1);
+
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
       {/* Header */}
@@ -95,14 +92,10 @@ export default function AccountPage() {
 
       {/* Profile card */}
       <div className="mx-5 bg-white rounded-3xl px-4 py-4 mb-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-14 h-14 rounded-full bg-[#E8E2DB] flex items-center justify-center">
-                <svg className="w-7 h-7 text-[#9B8F86]" viewBox="0 0 24 24" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
-                </svg>
-              </div>
+              <Avatar avatarId={selectedAvatar} size="lg" />
               <div className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-white" />
             </div>
             <div>
@@ -115,14 +108,22 @@ export default function AccountPage() {
           </button>
         </div>
 
-        {/* Stats */}
-        <div className="flex mt-4 pt-4 border-t border-[#E8E2DB]">
+        {/* Avatar picker */}
+        <div className="pt-4 border-t border-[#F5F0EB]">
+          <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-3">Choose avatar</p>
+          <AvatarPicker selected={selectedAvatar} onSelect={setSelectedAvatar} />
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="mx-5 bg-white rounded-3xl mb-4">
+        <div className="flex">
           {[
             { label: "Friends", value: "6" },
             { label: "Groups", value: "5" },
             { label: "Expenses", value: "24" },
           ].map((stat, i) => (
-            <div key={stat.label} className={`flex-1 text-center ${i < 2 ? "border-r border-[#E8E2DB]" : ""}`}>
+            <div key={stat.label} className={`flex-1 py-4 text-center ${i < 2 ? "border-r border-[#F5F0EB]" : ""}`}>
               <p className="text-2xl font-black text-[#1A1510]">{stat.value}</p>
               <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">{stat.label}</p>
             </div>
@@ -144,7 +145,7 @@ export default function AccountPage() {
         </button>
       </div>
 
-      {/* Settings */}
+      {/* Settings sections */}
       <div className="mx-5 space-y-4 mb-6">
         {settingsSections.map((section) => (
           <div key={section.label} className="bg-white rounded-3xl px-4 py-4">

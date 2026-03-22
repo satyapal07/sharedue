@@ -104,7 +104,7 @@ export default function FriendsPage() {
             const isOwed = friend.balance > 0;
             return (
               <li key={friend.id} className="flex items-center gap-3 cursor-pointer">
-                <Avatar />
+                <Avatar avatarId={friend.avatarId} />
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-[#1A1510] text-[15px] leading-tight">{friend.name}</p>
                   {friend.breakdown && friend.breakdown.length > 0 ? (
