@@ -50,17 +50,35 @@ export default function GroupsPage() {
           {groups.map((group) => {
             const isOwed = group.balance > 0;
             return (
-              <li key={group.id} className="flex items-center gap-3 cursor-pointer">
+              <li key={group.id} className="flex gap-3 cursor-pointer">
                 <CategoryIcon category={group.category} />
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-[#1A1510] text-[15px] leading-tight">{group.name}</p>
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold text-[#1A1510] text-[15px] leading-tight">{group.name}</p>
+                    <div className="text-right ml-3 flex-shrink-0">
+                      <p className={`text-[15px] font-bold ${isOwed ? "text-emerald-600" : "text-[#DF5830]"}`}>
+                        {isOwed ? "+" : "−"}{fmt(group.balance)}
+                      </p>
+                      <p className="text-[10px] text-[#9B8F86] mt-0.5">{isOwed ? "owed to you" : "you owe"}</p>
+                    </div>
+                  </div>
                   <p className="text-xs text-[#9B8F86] mt-0.5">{group.memberCount} people</p>
-                </div>
-                <div className="text-right">
-                  <p className={`text-[15px] font-bold ${isOwed ? "text-emerald-600" : "text-[#DF5830]"}`}>
-                    {isOwed ? "+" : "−"}{fmt(group.balance)}
-                  </p>
-                  <p className="text-[10px] text-[#9B8F86] mt-0.5">{isOwed ? "owed to you" : "you owe"}</p>
+                  {group.breakdown && group.breakdown.length > 0 && (
+                    <div className="mt-2 flex gap-2">
+                      <div className="w-px bg-[#E8E2DB] ml-1 flex-shrink-0" />
+                      <div className="space-y-1">
+                        {group.breakdown.map((b) => (
+                          <p key={b.name} className="text-[11px] text-[#9B8F86]">
+                            {b.amount < 0 ? (
+                              <>You owe <span className="font-medium text-[#1A1510]">{b.name}</span> <span className="text-[#DF5830] font-medium">{fmt(b.amount)}</span></>
+                            ) : (
+                              <><span className="font-medium text-[#1A1510]">{b.name}</span> owes you <span className="text-emerald-600 font-medium">{fmt(b.amount)}</span></>
+                            )}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </li>
             );

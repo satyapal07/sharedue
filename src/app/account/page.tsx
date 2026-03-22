@@ -131,20 +131,6 @@ export default function AccountPage() {
         </div>
       </div>
 
-      {/* Pro banner */}
-      <div className="mx-5 mb-4 rounded-3xl bg-[#1A1510] p-4 flex items-center justify-between">
-        <div>
-          <p className="font-bold text-sm">
-            <span className="text-white">share</span><span className="text-[#DF5830]">due</span>
-            <span className="text-white"> Pro</span>
-          </p>
-          <p className="text-[#9B8F86] text-xs mt-0.5">Charts, reminders & more</p>
-        </div>
-        <button className="bg-[#DF5830] text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide">
-          Upgrade
-        </button>
-      </div>
-
       {/* Settings sections */}
       <div className="mx-5 space-y-4 mb-6">
         {settingsSections.map((section) => (
