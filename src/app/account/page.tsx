@@ -85,59 +85,54 @@ export default function AccountPage() {
 
   return (
     <div className="flex flex-col min-h-full bg-[#F5F0EB]">
-      <CollapsingHeader subtitle="Account" />
+      <CollapsingHeader />
 
-      {/* Profile card */}
-      <div className="mx-5 bg-white rounded-3xl px-4 py-4 mb-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {/* Tappable avatar — opens picker */}
-            <button
-              className="relative flex-shrink-0"
-              onClick={() => setPickerOpen(true)}
-            >
-              <Avatar avatarId={selectedAvatar} size="lg" />
-              <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#DF5830] rounded-full flex items-center justify-center border-2 border-white">
-                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                </svg>
-              </div>
-            </button>
-            <div>
-              <p className="font-bold text-[#1A1510] text-lg leading-tight">Satya Pal</p>
-              <p className="text-sm text-[#9B8F86]">satya.pal07@gmail.com</p>
+      {/* Profile row */}
+      <div className="px-5 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button
+            className="relative flex-shrink-0"
+            onClick={() => setPickerOpen(true)}
+          >
+            <Avatar avatarId={selectedAvatar} size="lg" />
+            <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#DF5830] rounded-full flex items-center justify-center border-2 border-[#F5F0EB]">
+              <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+              </svg>
             </div>
-          </div>
-          <button className="text-[11px] font-bold text-[#9B8F86] bg-[#F5F0EB] px-3 py-1.5 rounded-full uppercase tracking-wide">
-            Edit
           </button>
+          <div>
+            <p className="font-bold text-[#1A1510] text-lg leading-tight">Satya Pal</p>
+            <p className="text-sm text-[#9B8F86]">satya.pal07@gmail.com</p>
+          </div>
         </div>
+        <button className="text-[11px] font-bold text-[#9B8F86] bg-[#E8E2DB] px-3 py-1.5 rounded-full uppercase tracking-wide">
+          Edit
+        </button>
       </div>
 
       {/* Stats */}
-      <div className="mx-5 bg-white rounded-3xl mb-4">
-        <div className="flex">
-          {[
-            { label: "Friends", value: "6" },
-            { label: "Groups", value: "5" },
-            { label: "Expenses", value: "24" },
-          ].map((stat, i) => (
-            <div key={stat.label} className={`flex-1 py-4 text-center ${i < 2 ? "border-r border-[#F5F0EB]" : ""}`}>
-              <p className="text-2xl font-black text-[#1A1510]">{stat.value}</p>
-              <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+      <div className="flex">
+        {[
+          { label: "Friends", value: "6" },
+          { label: "Groups", value: "5" },
+          { label: "Expenses", value: "24" },
+        ].map((stat) => (
+          <div key={stat.label} className="flex-1 py-4 text-center">
+            <p className="text-2xl font-black text-[#1A1510]">{stat.value}</p>
+            <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mt-0.5">{stat.label}</p>
+          </div>
+        ))}
       </div>
 
       {/* Settings sections */}
-      <div className="mx-5 space-y-4 mb-6">
+      <div className="mb-6">
         {settingsSections.map((section) => (
-          <div key={section.label} className="bg-white rounded-3xl px-4 py-4">
-            <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-3">{section.label}</p>
-            <ul className="divide-y divide-[#F5F0EB]">
+          <div key={section.label}>
+            <p className="px-5 pt-5 pb-2 text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest">{section.label}</p>
+            <ul className="px-5">
               {section.items.map((item) => (
-                <li key={item.label} className="flex items-center gap-3 py-3 cursor-pointer">
+                <li key={item.label} className="flex items-center gap-3 py-3.5 cursor-pointer">
                   <div className="w-8 flex items-center justify-center flex-shrink-0">
                     {item.icon}
                   </div>
@@ -154,9 +149,11 @@ export default function AccountPage() {
           </div>
         ))}
 
-        <button className="w-full bg-white rounded-3xl py-4 text-sm font-bold text-[#DF5830] uppercase tracking-widest border border-[#E8E2DB]">
-          Sign out
-        </button>
+        <div className="px-5 pt-5">
+          <button className="w-full py-3.5 rounded-3xl border border-[#E8E2DB] bg-white/60 text-[13px] font-semibold text-[#DF5830] tracking-wide">
+            Sign out
+          </button>
+        </div>
       </div>
 
       {/* Avatar picker modal */}

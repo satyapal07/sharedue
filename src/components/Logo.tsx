@@ -1,13 +1,13 @@
-// Icon mark — two overlapping pills representing a split/shared bill
+// Icon mark — a rounded square split diagonally: dark top (share) + orange bottom (due)
 export function LogoMark({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Left pill — dark */}
-      <rect x="2" y="8" width="16" height="16" rx="8" fill="#1A1510" />
-      {/* Right pill — orange, offset to suggest overlap/sharing */}
-      <rect x="14" y="8" width="16" height="16" rx="8" fill="#DF5830" />
-      {/* White divider line in overlap zone */}
-      <rect x="15.5" y="11" width="1" height="10" rx="0.5" fill="white" opacity="0.6" />
+      {/* Upper portion — dark. Split line runs from (4,15) to (28,17). */}
+      <path d="M10 4 H22 A6 6 0 0 1 28 10 V17 L4 15 V10 A6 6 0 0 1 10 4 Z" fill="#1A1510" />
+      {/* Lower portion — orange */}
+      <path d="M4 15 L28 17 V22 A6 6 0 0 1 22 28 H10 A6 6 0 0 1 4 22 V15 Z" fill="#DF5830" />
+      {/* Subtle white split line */}
+      <line x1="4" y1="15" x2="28" y2="17" stroke="white" strokeWidth="1" strokeOpacity="0.35" />
     </svg>
   );
 }
