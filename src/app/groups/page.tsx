@@ -68,11 +68,10 @@ export default function GroupsPage() {
       <div
         className={`fixed bottom-0 left-0 right-0 z-50 max-w-[390px] mx-auto bg-white rounded-t-3xl px-5 pt-3 pb-10 transition-transform duration-300 ease-out ${filterOpen ? "translate-y-0" : "translate-y-full"}`}
       >
-        <div className="w-10 h-1 bg-[#E8E2DB] rounded-full mx-auto mb-5" />
-        <p className="text-[15px] font-bold text-[#1A1510] mb-4">Filter</p>
+        <div className="w-10 h-1 bg-[#E8E2DB] rounded-full mx-auto mb-6" />
         {/* Search bar */}
-        <div className="flex items-center gap-2.5 bg-[#F5F0EB] rounded-2xl px-3.5 py-3 mb-3">
-          <svg className="w-3.5 h-3.5 flex-shrink-0 text-[#9B8F86]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="flex items-center gap-2.5 bg-[#F5F0EB] rounded-2xl px-4 py-3.5 mb-6">
+          <svg className="w-4 h-4 flex-shrink-0 text-[#9B8F86]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
           </svg>
           <input
@@ -80,26 +79,27 @@ export default function GroupsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search groups…"
-            className="flex-1 bg-transparent text-[13px] text-[#1A1510] placeholder:text-[#B8AFA8] outline-none"
+            className="flex-1 bg-transparent text-[15px] text-[#1A1510] placeholder:text-[#C4BCB5] outline-none"
           />
           {search && (
             <button onClick={() => setSearch("")} className="text-[#9B8F86]">
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
             </button>
           )}
         </div>
-        {/* Segmented tabs */}
-        <div className="flex bg-[#F5F0EB] rounded-xl p-0.5">
+        {/* Tabs */}
+        <p className="text-[11px] font-semibold text-[#9B8F86] uppercase tracking-widest mb-3">Show</p>
+        <div className="flex gap-2">
           {FILTERS.map((f) => (
             <button
               key={f.value}
               onClick={() => { setFilter(f.value); setFilterOpen(false); }}
-              className="flex-1 py-2.5 rounded-[10px] text-[13px] font-semibold transition-all"
+              className="flex-1 py-3 rounded-full text-[14px] font-semibold transition-all"
               style={filter === f.value
                 ? { background: "#1A1510", color: "#fff" }
-                : { color: "#9B8F86" }}
+                : { background: "#F0EBE5", color: "#9B8F86" }}
             >
               {f.label}
             </button>
