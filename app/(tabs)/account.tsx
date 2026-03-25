@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Avatar from '../../components/Avatar';
 import { C } from '../../lib/colors';
+import Logo from '../../components/Logo';
 
 const SETTINGS: {section:string;items:{label:string;value?:string;icon:string}[]}[] = [
   { section: 'Preferences', items: [
@@ -22,7 +23,7 @@ export default function AccountScreen() {
   const insets = useSafeAreaInsets();
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}><Text style={styles.logo}>sharedue</Text></View>
+      <View style={styles.header}><Logo /></View>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         <View style={styles.profile}>
           <Avatar name="You" avatarId={1} size={64} />

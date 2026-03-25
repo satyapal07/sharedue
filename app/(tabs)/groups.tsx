@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { groups, settledGroups } from '../../lib/data';
 import CategoryIcon from '../../components/CategoryIcon';
 import { C } from '../../lib/colors';
+import Logo from '../../components/Logo';
 
 const fmt = (n: number) => `$${Math.abs(n).toFixed(2)}`;
 type Filter = 'all' | 'to-pay' | 'to-receive';
@@ -31,7 +32,7 @@ export default function GroupsScreen() {
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
       <View style={styles.header}>
-        <Text style={styles.logo}>sharedue</Text>
+        <Logo />
         <TouchableOpacity onPress={() => setFilterOpen(true)} style={[styles.filterBtn, isFiltered && styles.filterBtnActive]}>
           <Ionicons name="options-outline" size={16} color={isFiltered ? '#fff' : C.muted} />
           {isFiltered && <View style={styles.dot} />}

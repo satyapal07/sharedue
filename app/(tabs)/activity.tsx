@@ -6,6 +6,7 @@ import { recentActivity } from '../../lib/data';
 import CategoryIcon from '../../components/CategoryIcon';
 import Avatar from '../../components/Avatar';
 import { C } from '../../lib/colors';
+import Logo from '../../components/Logo';
 
 const fmt = (n: number) => `$${Math.abs(n).toFixed(2)}`;
 
@@ -25,7 +26,7 @@ export default function ActivityScreen() {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}><Text style={styles.logo}>sharedue</Text></View>
+      <View style={styles.header}><Logo /></View>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {months.map(month => {
           const items = byMonth[month];

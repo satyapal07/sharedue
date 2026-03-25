@@ -36,9 +36,9 @@ export default function TabLayout() {
     <>
       <Tabs screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#fff', borderTopColor: C.divider, height: 60 },
-        tabBarActiveTintColor: C.dark,
-        tabBarInactiveTintColor: C.muted,
+        tabBarStyle: { backgroundColor: C.dark, borderTopWidth: 0, height: 60 },
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: '#6B6059',
         tabBarLabelStyle: { fontSize: 10, fontWeight: '600', marginBottom: 6 },
       }}>
         <Tabs.Screen name="index"   options={{ title: 'Friends',  tabBarIcon: ({ color }) => <Ionicons name="people-outline"   size={22} color={color} /> }} />

@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { friends, settledFriends, totalBalance } from '../../lib/data';
 import Avatar from '../../components/Avatar';
 import { C } from '../../lib/colors';
+import Logo from '../../components/Logo';
 
 const fmt = (n: number) => `$${Math.abs(n).toFixed(2)}`;
 type Filter = 'all' | 'to-pay' | 'to-receive';
@@ -35,7 +36,7 @@ export default function FriendsScreen() {
     <View style={[styles.root, { paddingTop: insets.top }]}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.logo}>sharedue</Text>
+        <Logo />
         <TouchableOpacity onPress={() => setFilterOpen(true)}
           style={[styles.filterBtn, (filterOpen || isFiltered) && styles.filterBtnActive]}>
           <Ionicons name="options-outline" size={16} color={isFiltered ? '#fff' : C.muted} />
@@ -69,11 +70,19 @@ export default function FriendsScreen() {
               <Avatar name={friend.name} avatarId={friend.avatarId} size={38} />
               <View style={styles.rowContent}>
                 <Text style={styles.rowName}>{friend.name}</Text>
-                {friend.breakdown?.map(b => (
-                  <Text key={b.group} style={styles.breakdown}>
-                    {b.amount < 0 ? `Owe in "${b.group}"` : `Owed in "${b.group}"`}
-                  </Text>
-                ))}
+                {friend.breakdown?.map(b => {
+                  const shortName = friend.name.split(' ').map((w, i) => i === 0 ? w : w[0] + '.').join(' ');
+                  const isNonGroup = b.group.toLowerCase().includes('non-group');
+                  return (
+                    <Text key={b.group} style={styles.breakdown}>
+                      {b.amount < 0
+                        ? `To pay ${shortName} `
+                        : `${shortName} to receive `}
+                      <Text style={{ color: b.amount < 0 ? C.orange : C.emerald, fontWeight: '600' }}>{fmt(b.amount)}</Text>
+                      {isNonGroup ? ' in non-group expenses' : ` in "${b.group}"`}
+                    </Text>
+                  );
+                })}
               </View>
               <View style={styles.rowRight}>
                 <Text style={[styles.rowAmt, { color: isOwed ? C.emerald : C.orange }]}>
